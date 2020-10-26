@@ -15,4 +15,8 @@ from instructor
 
 Select ID, name
 from instructor
-where salary = (select max(salary) from instructor)Select count(*)from student
+where salary = (select max(salary) from instructor)Select count(*)from studentDELETE FROM student WHERE First_Name = 'Peter'Select * From studentupdate instructor
+set salary = salary * 1.17
+where dept_name = 'History'Delete from course
+where course_id not in
+(select course_id from section)
