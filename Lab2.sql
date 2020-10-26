@@ -22,5 +22,11 @@ Insert into Empinfo Values ('Leroy', 'Brown', 32380, 22, 'Pinetop', 'Arizona')
 Insert into Empinfo Values ('Elroy', 'Cleaver', 32382, 22, 'Globe', 'Arizona')
 
 
+Select [first], [age] from Empinfo
+Select [first], [last], [city] from Empinfo Where city != 'Payson'
+Select * from Empinfo Where age > 40
+Select [first], [last] from Empinfo Where last LIKE '%ay'
+Select * from Empinfo Where first = 'Mary' 
+Select * from Empinfo Where first LIKE 'Mary%' 
 
 
