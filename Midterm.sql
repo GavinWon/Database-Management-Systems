@@ -178,7 +178,40 @@ Select ASSIGN_CHG_HR * ASSIGN_HOURS As ASSIGN_CHARGE
 From [cis55_31].[dbo].[ASSIGNMENT]
 
 
+/* 20.  Using the data in the ASSIGNMENT table, write the SQL code that will yield the total number of
+hours worked for each employee and the total charges stemming from those hours worked. The
+results of running that query are shown in Figure P20. */
 
+Select a.EMP_NUM, e.EMP_LNAME, Round(SUM(a.ASSIGN_HOURS), 1) as SumOfASSIGN_HOURS, Round(SUM(a.ASSIGN_CHARGE), 2) as SumOfASSIGN_CHARGE
+From [cis55_31].[dbo].[ASSIGNMENT] a
+Inner Join [cis55_31].[dbo].[EMPLOYEE] e
+	on a.EMP_NUM = e.EMP_NUM
+Group By a.EMP_NUM, e.EMP_LNAME
+Order By a.EMP_NUM Asc;
+
+
+/* 21. Write a query to produce the total number of hours and charges for each of the projects represented
+in the ASSIGNMENT table. The output is shown in Figure P21. */
+
+Select a.PROJ_NUM, Round(SUM(a.ASSIGN_HOURS), 1) as SumOfASSIGN_HOURS, Round(SUM(a.ASSIGN_CHARGE), 2) as SumOfASSIGN_CHARGE
+From [cis55_31].[dbo].[ASSIGNMENT] a
+Group By a.PROJ_NUM
+Order by a.PROJ_NUM Asc;
+
+
+/* 22. Write the SQL code to generate the total hours worked and the total charges made by all employees.
+The results are shown in Figure P22. (Hint: This is a nested query. If you use Microsoft Access, you
+can generate the result by using the query output shown in Figure P20 as the basis for the query that
+will produce the output shown in Figure P22) */
+
+Select SUM(SumOfASSIGN_HOURS) as SumOfSumOfASSIGN_HOURS, Round(SUM(SumOfASSIGN_CHARGE),2) as SumOfSumOfASSIGN_CHARGE
+From (
+	Select a.EMP_NUM, e.EMP_LNAME, Round(SUM(a.ASSIGN_HOURS), 1) as SumOfASSIGN_HOURS, SUM(a.ASSIGN_CHARGE) as SumOfASSIGN_CHARGE
+	From [cis55_31].[dbo].[ASSIGNMENT] a
+	Inner Join [cis55_31].[dbo].[EMPLOYEE] e
+		on a.EMP_NUM = e.EMP_NUM
+	Group By a.EMP_NUM, e.EMP_LNAME
+	) a;
 
 
 
