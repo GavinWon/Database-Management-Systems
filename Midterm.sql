@@ -126,3 +126,64 @@ the rows for both Smith and Smithfield should be included in the listing. Assume
 Select * from [cis55_31].[dbo].[EMPLOYEE]
 Where EMP_LNAME LIKE 'Smith%'
 
+/* 14. Using the EMPLOYEE, JOB, and PROJECT tables in the Ch07_ConstructCo database (see Figure
+P7.1), write the SQL code that will produce the results shown in Figure P7.14. */
+
+Select p.PROJ_NAME, p.PROJ_VALUE, p.PROJ_BALANCE, e.EMP_LNAME, e.EMP_FNAME, e.EMP_INITIAL, e.JOB_CODE, j.JOB_DESCRIPTION, j.JOB_CHG_HOUR
+From [cis55_31].[dbo].[JOB] j
+INNER JOIN [cis55_31].[dbo].[EMPLOYEE] e
+	on j.JOB_CODE = e.JOB_CODE
+Inner JOIN [cis55_31].[dbo].[PROJECT] p
+	on e.EMP_NUM = p.EMP_NUM
+Order by p.PROJ_VALUE Asc;
+
+
+/* 15. Write the SQL code that will produce a virtual table named REP_1. The virtual table should contain
+the same information that was shown in Problem 14. */
+
+Select p.PROJ_NAME, p.PROJ_VALUE, p.PROJ_BALANCE, e.EMP_LNAME, e.EMP_FNAME, e.EMP_INITIAL, e.JOB_CODE, j.JOB_DESCRIPTION, j.JOB_CHG_HOUR
+Into [cis55_31].[dbo].[REP_1]
+From [cis55_31].[dbo].[JOB] j
+INNER JOIN [cis55_31].[dbo].[EMPLOYEE] e
+	on j.JOB_CODE = e.JOB_CODE
+Inner JOIN [cis55_31].[dbo].[PROJECT] p
+	on e.EMP_NUM = p.EMP_NUM
+Order by p.PROJ_VALUE Asc;
+
+
+/* 16. Write the SQL code to find the average bonus percentage in the EMP_2 table you created in Problem */
+
+Select AVG(EMP_PCT) as [Average Bonus Percentage]
+From [cis55_31].[dbo].[EMP_2]; 
+
+/* 17. Write the SQL code that will produce a listing for the data in the EMP_2 table in ascending order by
+the bonus percentage. */
+
+Select *
+From [cis55_31].[dbo].[EMP_2]
+Order by EMP_PCT Asc;
+
+
+/* 18. Write the SQL code that will list only the distinct project numbers found in the EMP_2 table.*/
+
+Select Distinct PROJ_NUM
+From [cis55_31].[dbo].[EMP_2]
+
+
+/* 19. Write the SQL code to calculate the ASSIGN_CHARGE values in the ASSIGNMENT table in the
+Ch07_ConstructCo database. (See Figure P7.1.) Note that ASSIGN_CHARGE is a derived attribute
+that is calculated by multiplying ASSIGN_CHG_HR by ASSIGN_HOURS.*/
+
+Select ASSIGN_CHG_HR * ASSIGN_HOURS As ASSIGN_CHARGE
+From [cis55_31].[dbo].[ASSIGNMENT]
+
+
+
+
+
+
+
+
+
+
+
