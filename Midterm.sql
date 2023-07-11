@@ -2,7 +2,7 @@
 subset of the EMPLOYEE table. The basic EMP_1 table structure is summarized in the table below.
 (Note that the JOB_CODE is the FK to JOB.) */
 
-CREATE TABLE [cis55_31].[dbo].[EMP_1] (
+CREATE TABLE [cis55_31].[dbo].[EMP_1] (adasdas
 EMP_NUM char(3),
 EMP_LNAME varchar(15),
 EMP_FNAME char(15),
